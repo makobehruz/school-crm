@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %} Maktab CRM - O'qituvchi ma'lumotlari {% endblock %}
+
+{% block content %}
+    <main>
+        <h1>O'qituvchi ma'lumotlari</h1>
+        <div class="teacher-details">
+            <div class="teacher-info">
+                <img src="{{ teachers.rasm.url }}" alt="O'qituvchi rasmi" class="teacher-image" style="width: 400px; height: 300px;">
+                <h2>{{ teachers.ismi }} {{ teachers.familiya }}</h2>
+                <p>ID: <span>001</span></p>
+                <p>Fan: <span>{{ teachers.fan }}</span></p>
+                <p>Telefon: <span>+{{ teachers.telefon }}</span></p>
+                <p>Email: <span>{{ teachers.email }}</span></p>
+                <p>Ish tajribasi: <span>{{ teachers.ish }}</span></p>
+            </div>
+            <div class="teacher-groups">
+                <h3>O'qitadigan guruhlar</h3>
+                <ul>
+                    <li>9-A sinf</li>
+                    <li>10-B sinf</li>
+                    <li>11-C sinf</li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <div class="actions">
+            <a href="{% url 'teachers:update' pk=teachers.pk %}" class="btn"><i class="fas fa-edit"></i> Tahrirlash</a>
+            <a href="{% url 'teachers:list' %}" class="btn"> Ortga </a>
+            <a href="{% url 'teachers:delete' pk=teachers.pk %}" class="btn btn-danger"><i class="fas fa-trash"></i> O'chirish</a>
+        </div>
+    </main><br><br>
+{% endblock %}

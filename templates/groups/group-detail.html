@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} Maktab CRM - Guruh ma'lumotlari {% endblock %}
+
+{% block content %}
+   <main>
+        <h1>Guruh ma'lumotlari</h1>
+        <div class="group-details">
+            <div class="group-info">
+                <h2>{{ groups.nomi | upper }}</h2>
+                <p>ID: 001</p>
+                <p>O'quvchilar soni: 30</p>
+                <p>Sinf rahbari: {{ groups.sinf }}</p>
+            </div>
+            <div class="group-students">
+                <h3>O'quvchilar ro'yxati</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ism</th>
+                            <th>Familiya</th>
+                            <th>Amallar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Ali</td>
+                            <td>Valiyev</td>
+                            <td><button class="btn btn-info">Ko'rish</button></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Oyna</td>
+                            <td>Yusupova</td>
+                            <td><button class="btn btn-info">Ko'rish</button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Jamshid</td>
+                            <td>Husanov</td>
+                            <td><button class="btn btn-info">Ko'rish</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       <br>
+        <div class="actions">
+            <a href="{% url 'groups:update' pk=groups.pk %}" class="btn"><i class="fas fa-edit"></i> Tahrirlash</a>
+            <a href="{% url 'groups:list' %}" class="btn"> Ortga </a>
+            <a href="{% url 'groups:delete' pk=groups.pk %}" class="btn btn-danger"><i class="fas fa-trash"></i> O'chirish</a>
+        </div>
+    </main>
+{% endblock %}

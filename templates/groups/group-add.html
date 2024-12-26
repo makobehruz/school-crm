@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if groups %} Maktab CRM - Guruh tahrirlash {% else %} Maktab CRM - Guruh yaratish {% endif %}{% endblock %}
+
+{% block content %}
+    <main>
+        <h1>{% if groups %} Guruhni tahrirlash {% else %} Guruh yaratish {% endif %}</h1>
+        <form id="createGroupForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nomi">Guruh nomi:</label>
+                <input type="text" id="nomi" name="nomi" placeholder="Guruh nomini kiriting" value="{{ groups.nomi }}" required>
+            </div>
+            <div class="form-group">
+                <label for="sinf">Sinf rahbari:</label>
+                <select id="sinf" name="sinf"  required>
+                    <option value="">Sinf rahbarini tanlang</option>
+                    <option value="teacher1">O'qituvchi A</option>
+                    <option value="teacher2">O'qituvchi B</option>
+                    <option value="teacher3">O'qituvchi C</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="bolalar">O'quvchilar:</label>
+                <select id="bolalar" name="bolalar" multiple required>
+                    <option value="student1">Ali Valiyev</option>
+                    <option value="student2">Oyna Yusupova</option>
+                    <option value="student3">Jamshid Husanov</option>
+                    <option value="student4">Nodira Abdullayeva</option>
+                    <option value="student5">Zafarbek Tursunov</option>
+                </select>
+            </div>
+            <br>
+            <div class="actions">
+                {% if groups %}
+                    <button type="submit"><a class="btn"><i class="fas fa-save"></i> Tahrirlash </a></button>
+                    <a href="{% url 'groups:list' %}" class="btn btn-secondary"><i class="fas fa-times"></i> Bekor qilish</a>
+                {% else %}
+                    <button type="submit"><a class="btn"><i class="fas fa-save"></i> Saqlash </a></button>
+                    <a href="{% url 'groups:list' %}" class="btn btn-secondary"><i class="fas fa-times"></i> Bekor qilish</a>
+                {% endif %}
+            </div>
+        </form>
+    </main>
+{% endblock %}

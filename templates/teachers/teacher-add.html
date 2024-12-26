@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %} {% if teachers %} Maktab CRM - ma'lumotlarini tahrirlash {% else %} Maktab CRM - Yangi O'qituvchi yaratish {% endif %} {% endblock %}
+
+{% block content %}
+    <main>
+        <h1>{% if teachers %} O'qituvhi ma'lumotlarini tahrirlash {% else %} Yangi O'qituvchi yaratish {% endif %}</h1>
+        <form id="createTeacherForm" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="ismi">Ism:</label>
+                <input type="text" id="ismi" name="ismi" value="{{ teachers.ismi }}" required>
+            </div>
+            <div class="form-group">
+                <label for="familiya">Familiya:</label>
+                <input type="text" id="familiya" name="familiya" value="{{ teachers.familiya }}" required>
+            </div>
+            <div class="form-group">
+                <label for="fan">Fan:</label>
+                <select id="fan" name="fan" required>
+                    <option value="Matematika">Matematika</option>
+                    <option value="Fizika">Fizika</option>
+                    <option value="Kimyo">Kimyo</option>
+                    <option value="Biologiya">Biologiya</option>
+                    <option value="Ingliz tili">Ingliz tili</option>
+                    <option value="Tarix">Tarix</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="telefon">Telefon:</label>
+                <input type="number" id="telefon" name="telefon" value="{{ teachers.telefon }}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ teachers.email }}" required>
+            </div>
+            <div class="form-group">
+                <label for="ish">Ish tajribasi (yil):</label>
+                <input type="number" id="ish" name="ish" value="{{ teachers.ish }}" required>
+            </div>
+            <div class="form-group">
+                <label for="rasm">Rasm:</label>
+                <input type="file" id="rasm" name="rasm" accept="image/*">
+            </div>
+            <br>
+            <div class="actions">
+                {% if teachers %}
+                    <button type="submit"><a class="btn"><i class="fas fa-save"></i> Tahrirlash </a></button>
+                    <a href="{% url 'teachers:list' %}" class="btn btn-secondary"><i class="fas fa-times"></i> Bekor qilish</a>
+                {% else %}
+                    <button type="submit"><a class="btn"><i class="fas fa-save"></i> Saqlash</a></button>
+                    <a href="{% url 'teachers:list' %}" class="btn btn-secondary"><i class="fas fa-times"></i> Bekor qilish</a>
+                {% endif %}
+            </div>
+        </form>
+    </main>
+{% endblock %}

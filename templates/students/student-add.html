@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} {% if students %} Maktab CRM - O'quvchi ma'lumotlarini tahrirlash {% else %}  Maktab CRM - O'quvchi yaratish {% endif %} {% endblock %}
+
+{% block content %}
+    <main>
+        <h1>{% if students %} O'quvchi ma'lumotlarini tahrirlash {% else %} O'quvchi yaratish {% endif %}</h1>
+        <form id="createStudentForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="ismi">Ism:</label>
+                <input type="text" id="ismi" name="ismi" placeholder="O'quvchining ismini kiriting" value="{{ students.ismi }}" required>
+            </div>
+            <div class="form-group">
+                <label for="familiya">Familiya:</label>
+                <input type="text" id="familiya" name="familiya" placeholder="O'quvchining familiyasini kiriting" value="{{ students.familiya }}" required>
+            </div><br>
+            <div class="form-group">
+                <label for="manzil">Manzil:</label>
+                <textarea type="text" id="manzil" name="manzil" placeholder="O'quvchining manzilini kiriting" required>{{ students.manzil }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="telefon">Telefon:</label>
+                <input type="number" id="telefon" name="telefon" placeholder="O'quvchining telefon nomerini kiriting" value="{{ students.telefon }}" required>
+            </div>
+            <div class="form-group">
+                <label for="guruh">Guruh:</label>
+                <select id="guruh" name="guruh" required>
+                    <option value="">Guruhni tanlang</option>
+                    <option value="9A">9 A</option>
+                    <option value="9B">9 B</option>
+                    <option value="9C">9 C</option>
+                    <option value="10A">10 A</option>
+                    <option value="10B">10 B</option>
+                    <option value="10C">10 C</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dob">Tug'ilgan sana:</label>
+                <input type="date" id="dob" name="dob"  value="{{ students.dob | date:'Y-m-d' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="rasm">Cover Image</label>
+                <input type="file" id="rasm" name="rasm" accept="image/*">
+
+            <div class="actions">
+                {% if students %}
+                    <br>
+                    <button type="submit"><a  class="btn"><i class="fas fa-save"></i> Tahrirlash </a></button>
+                    <a href="{% url 'students:list' %}" class="btn btn-secondary"><i class="fas fa-times"></i> Bekor qilish</a>
+                {% else %}
+                    <br>
+                    <button type="submit"><a class="btn"><i class="fas fa-save"></i> Saqlash </a></button>
+                    <a href="{% url 'students:list' %}" class="btn btn-secondary"><i class="fas fa-times"></i> Bekor qilish</a>
+                {% endif %}
+            </div>
+        </form>
+    </main><br><br>
+{% endblock %}

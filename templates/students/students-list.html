@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %} Maktab CRM - O'quvchilar ro'yxati {% endblock %}
+
+{% block content %}
+    <main>
+        <h1>O'quvchilar ro'yxati</h1>
+        <div class="actions">
+            <a href="{% url 'students:form' %}"><button id="addStudent" class="btn"><i class="fas fa-plus"></i> Yangi o'quvchi qo'shish</button></a>
+            <input type="text" id="searchStudent" placeholder="O'quvchi qidirish" class="search-input">
+        </div>
+        <br>
+
+        <table id="studentsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ism</th>
+                    <th>Familiya</th>
+                    <th>Guruh</th>
+                    <th>Amallar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for students in students %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ students.ismi }}</td>
+                    <td>{{ students.familiya }}</td>
+                    <td>{{ students.guruh }}</td>
+                    <td>
+                        <a href="{% url 'students:detail' pk=students.pk %}" class="btn btn-sm"><i class="fas fa-eye"></i> Ko'rish</a>
+                        <a href="{% url 'students:update' pk=students.pk %}" class="btn btn-sm"><i class="fas fa-edit"></i> Tahrirlash</a>
+                        <a href="{% url 'students:delete' pk=students.pk %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> O'chirish</a>
+                    </td>
+                </tr>
+                {% empty %}
+                    <h3>Hozircha o'quvchilar mavjud emas !</h3>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <div class="pagination">
+            <button id="prevPage" class="btn btn-secondary"><i class="fas fa-chevron-left"></i> Oldingi</button>
+            <span id="currentPage">1</span>
+            <button id="nextPage" class="btn btn-secondary">Keyingi <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </main><br><br>
+{% endblock %}
