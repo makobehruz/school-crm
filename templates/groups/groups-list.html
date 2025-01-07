@@ -10,6 +10,7 @@
             <input type="text" id="searchGroup" placeholder="Guruh qidirish" class="search-input">
         </div>
         <br>
+        {% if groups %}
         <table id="groupsTable">
             <thead>
                 <tr>
@@ -33,8 +34,6 @@
                         <a href="{% url 'groups:delete' pk=groups.pk %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> O'chirish</a>
                     </td>
                 </tr>
-                {% empty %}
-                    <h3>Gurupa mavjud emas !</h3>
                 {% endfor %}
             </tbody>
         </table>
@@ -44,5 +43,8 @@
             <span>1</span>
             <a href="#" class="btn btn-secondary">Keyingi <i class="fas fa-chevron-right"></i></a>
         </div>
+        {% else %}
+            <h3>Gurupa mavjud emas !</h3>
+        {% endif %}
     </main><br><br>
 {% endblock %}

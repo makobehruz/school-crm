@@ -10,7 +10,7 @@
             <input type="text" id="searchStudent" placeholder="O'quvchi qidirish" class="search-input">
         </div>
         <br>
-
+        {% if students %}
         <table id="studentsTable">
             <thead>
                 <tr>
@@ -24,7 +24,7 @@
             <tbody>
                 {% for students in students %}
                 <tr>
-                    <td>{{ forloop.counter }}</td>
+                    <td>{{ students.id }}</td>
                     <td>{{ students.ismi }}</td>
                     <td>{{ students.familiya }}</td>
                     <td>{{ students.guruh }}</td>
@@ -34,8 +34,6 @@
                         <a href="{% url 'students:delete' pk=students.pk %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> O'chirish</a>
                     </td>
                 </tr>
-                {% empty %}
-                    <h3>Hozircha o'quvchilar mavjud emas !</h3>
                 {% endfor %}
             </tbody>
         </table>
@@ -45,5 +43,8 @@
             <span id="currentPage">1</span>
             <button id="nextPage" class="btn btn-secondary">Keyingi <i class="fas fa-chevron-right"></i></button>
         </div>
-    </main><br><br>
+        {% else %}
+            <h3>Hozircha o'quvchilar mavjud emas !</h3>
+        {% endif %}
+    </main>
 {% endblock %}

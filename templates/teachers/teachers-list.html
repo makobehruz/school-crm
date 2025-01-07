@@ -9,7 +9,9 @@
             <a href="{% url 'teachers:create' %}" class="btn"><i class="fas fa-plus"></i> Yangi o'qituvchi qo'shish</a>
             <input type="text" id="searchTeacher" placeholder="O'qituvchi qidirish" class="search-input">
         </div>
-        <table id="teachersTable"><br>
+        <br>
+        {% if teachers %}
+        <table id="teachersTable">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -32,17 +34,17 @@
                         <a href="{% url 'teachers:delete' pk=teachers.pk %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> O'chirish</a>
                     </td>
                 </tr>
-                {% empty %}
-                    <h3>Hozircha o'qituvchi mavjud emas !</h3>
                 {% endfor %}
             </tbody>
-        </table>
-        <br>
+        </table><br>
         <div class="pagination">
             <a href="#" class="btn btn-secondary"><i class="fas fa-chevron-left"></i> Oldingi</a>
             <span>1</span>
             <a href="#" class="btn btn-secondary">Keyingi <i class="fas fa-chevron-right"></i></a>
         </div>
+        {% else %}
+            <h3>Hozircha o'qituvchi mavjud emas !</h3>
+        {% endif %}
     </main>
 {% endblock %}
 

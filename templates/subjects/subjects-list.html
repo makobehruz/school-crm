@@ -9,6 +9,8 @@
             <a href="{% url 'subjects:form' %}" class="btn"><i class="fas fa-plus"></i> Yangi fan qo'shish</a>
             <input type="text" id="searchSubject" placeholder="Fan qidirish" class="search-input">
         </div>
+        <br>
+        {% if subjects %}
         <table id="subjectsTable">
             <thead>
                 <tr>
@@ -18,10 +20,10 @@
                     <th>Amallar</th>
                 </tr>
             </thead>
-            <tbody><br>
+            <tbody>
                 {% for subjects in subjects %}
                 <tr>
-                    <td>{{ forloop.counter }}</td>
+                    <td>{{ subjects.id }}</td>
                     <td>{{ subjects.nomi }}</td>
                     <td>{{ subjects.rahbar }}</td>
                     <td>
@@ -30,8 +32,6 @@
                         <a href="{% url 'subjects:delete' pk=subjects.pk %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> O'chirish</a>
                     </td>
                 </tr>
-                {% empty %}
-                    <h3>Fanlar mavjud emas !</h3>
                 {% endfor %}
             </tbody>
         </table>
@@ -41,5 +41,8 @@
             <span>1</span>
             <a href="#" class="btn btn-secondary">Keyingi <i class="fas fa-chevron-right"></i></a>
         </div>
+        {% else %}
+            <h3> Fanlar mavjud emas!</h3>
+        {% endif %}
     </main>
 {% endblock %}

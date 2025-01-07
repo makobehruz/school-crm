@@ -8,8 +8,7 @@
         <div class="subject-details">
             <div class="subject-info">
                 <h2>{{ subjects.nomi }}</h2>
-                <p>ID: {{ forloop.counter }}</p>
-                <p>O'qituvchilar soni: {{ subjects.rahbar }}</p>
+                <p>ID: {{ subjects.id }}</p>
             </div>
             <div class="subject-teachers">
                 <h3>O'qituvchilar ro'yxati</h3>
@@ -24,33 +23,13 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
-                            <td>Ali</td>
-                            <td>Valiyev</td>
+                            <td>{{ subjects.id }}</td>
+                            <td>{{ subjects.ismi }}</td>
+                            <td>{{ subjects.familiya }}</td>
                             <td>
                                 <a href="teacher-detail.html?id=1" class="btn btn-sm"><i class="fas fa-eye"></i> Ko'rish</a>
                                 <a href="teacher-update.html?id=1" class="btn btn-sm"><i class="fas fa-edit"></i> Tahrirlash</a>
                                 <a href="teacher-delete.html?id=1" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> O'chirish</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Laylo</td>
-                            <td>Rahmatova</td>
-                            <td>
-                                <a href="teacher-detail.html?id=2" class="btn btn-sm"><i class="fas fa-eye"></i> Ko'rish</a>
-                                <a href="teacher-update.html?id=2" class="btn btn-sm"><i class="fas fa-edit"></i> Tahrirlash</a>
-                                <a href="teacher-delete.html?id=2" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> O'chirish</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Jahongir</td>
-                            <td>Qodirov</td>
-                            <td>
-                                <a href="teacher-detail.html?id=3" class="btn btn-sm"><i class="fas fa-eye"></i> Ko'rish</a>
-                                <a href="teacher-update.html?id=3" class="btn btn-sm"><i class="fas fa-edit"></i> Tahrirlash</a>
-                                <a href="teacher-delete.html?id=3" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> O'chirish</a>
                             </td>
                         </tr>
                     </tbody>

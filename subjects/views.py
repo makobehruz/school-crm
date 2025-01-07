@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views import View
 from .models import Subject
 
 
@@ -11,11 +10,9 @@ def subject_list(request):
 def subject_form(request):
     if request.method == 'POST':
         nomi = request.POST.get('nomi')
-        rahbar = request.POST.get('rahbar')
-        if nomi and rahbar:
+        if nomi:
             Subject.objects.create(
                 nomi = nomi,
-                rahbar = rahbar,
             )
             return redirect('subjects:list')
     return render(request,'subjects/subject-add.html')
@@ -29,10 +26,8 @@ def subject_update(request, pk):
     subjects = get_object_or_404(Subject, pk=pk)
     if request.method == 'POST':
         nomi = request.POST.get('nomi')
-        rahbar = request.POST.get('rahbar')
-        if nomi and rahbar:
+        if nomi:
             subjects.nomi = nomi
-            subjects.rahbar = rahbar
             subjects.save()
             return redirect('subjects:list')
     ctx = {'subjects': subjects}

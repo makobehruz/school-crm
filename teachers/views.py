@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Teachers
-
+from subjects.models import Subject
 
 def teachers_list(request):
     teachers = Teachers.objects.all()
@@ -17,6 +17,7 @@ def teachers_create(request):
         ish = request.POST.get('ish')
         rasm = request.FILES.get('rasm')
         if ismi and familiya and fan and telefon and email and ish and rasm:
+            fan = Subject.objects.get(nomi=fan)
             Teachers.objects.create(
                 ismi = ismi,
                 familiya = familiya,
@@ -27,7 +28,9 @@ def teachers_create(request):
                 rasm = rasm,
             )
             return redirect('teachers:list')
-    return render(request,'teachers/teacher-add.html')
+    subjects = Subject.objects.all()
+    ctx = {'subjects': subjects}
+    return render(request,'teachers/teacher-add.html', ctx)
 
 def teachers_detail(request, pk):
     teachers = get_object_or_404(Teachers, pk=pk)
@@ -36,6 +39,7 @@ def teachers_detail(request, pk):
 
 def teachers_update(request, pk):
     teachers = get_object_or_404(Teachers, pk=pk)
+    subjects = Subject.objects.all()
     if request.method == 'POST':
         ismi = request.POST.get('ismi')
         familiya = request.POST.get('familiya')
@@ -45,6 +49,7 @@ def teachers_update(request, pk):
         ish = request.POST.get('ish')
         rasm = request.FILES.get('rasm')
         if ismi and familiya and fan and telefon and email and ish and rasm:
+            fan = Subject.objects.get(nomi=fan)
             teachers.ismi = ismi
             teachers.familiya = familiya
             teachers.fan = fan
@@ -54,7 +59,7 @@ def teachers_update(request, pk):
             teachers.rasm = rasm
             teachers.save()
             return redirect('teachers:list')
-    ctx = {'teachers': teachers}
+    ctx = {'teachers': teachers, 'subjects': subjects }
     return render(request,'teachers/teacher-add.html', ctx)
 
 def teachers_delete(request, pk):

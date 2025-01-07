@@ -9,7 +9,7 @@
             <div class="student-info">
                 <img src="{{ students.rasm.url }}" style="width: 400px; height: 300px;" alt="O'quvchi rasmi" id="studentImage" class="student-image">
                 <h2 id="studentName">{{ students.ismi }} {{ students.familiya }}</h2>
-                <p>ID: <span id="studentId">12345</span></p>
+                <p>ID: <span id="studentId">{{ students.id }}</span></p>
                 <p>Guruh: <span id="studentGroup">{{ students.guruh}}</span></p>
                 <p>Tug'ilgan sana: <span id="studentBirthDate">{{ students.dob | date:"Y-m-d" }}</span></p>
                 <p>Telefon: <span id="studentPhone">+{{ students.telefon }}</span></p>
@@ -30,16 +30,6 @@
                             <td>Matematika</td>
                             <td>4</td>
                             <td>2024-05-01</td>
-                        </tr>
-                        <tr>
-                            <td>Fizika</td>
-                            <td>5</td>
-                            <td>2024-05-03</td>
-                        </tr>
-                        <tr>
-                            <td>Ingliz tili</td>
-                            <td>3</td>
-                            <td>2024-05-05</td>
                         </tr>
                     </tbody>
                 </table>
